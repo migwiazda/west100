@@ -1,30 +1,13 @@
 import Image from "next/image";
-
-const PHONE = "905-238-8336";
-const PHONE_HREF = "tel:+19052388336";
-const FAX = "905-238-0020";
-const ADDRESS = "129 Fairview Road West";
-const CITY = "Mississauga, Ontario L5B 1K7";
+import Link from "next/link";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { SITE } from "@/lib/site";
 
 export default function Home() {
   return (
     <div className="flex flex-col bg-paper text-ink">
-      <header className="animate-fade-in absolute inset-x-0 top-0 z-20">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-10">
-          <a
-            href="#top"
-            className="font-display text-sm font-semibold tracking-[0.18em] text-white"
-          >
-            WEST-100
-          </a>
-          <a
-            href={PHONE_HREF}
-            className="text-sm font-medium tracking-wide text-white/90 transition-colors hover:text-white"
-          >
-            {PHONE}
-          </a>
-        </div>
-      </header>
+      <SiteHeader variant="overlay" />
 
       <main id="top">
         {/* Hero — brand first, one composition */}
@@ -45,7 +28,7 @@ export default function Home() {
           <div className="relative z-10 flex min-h-[100svh] flex-col justify-end px-6 pb-16 pt-28 md:px-10 md:pb-24">
             <div className="mx-auto w-full max-w-7xl">
               <p className="animate-fade-up font-display text-[clamp(3.5rem,12vw,9rem)] font-extrabold leading-[0.9] tracking-tight text-white">
-                WEST-100
+                {SITE.name}
               </p>
               <p className="animate-fade-up delay-1 mt-3 font-display text-lg font-medium tracking-[0.22em] text-brass md:text-xl">
                 METRO VIEW REALTY
@@ -60,10 +43,10 @@ export default function Home() {
               </p>
               <div className="animate-fade-up delay-4 mt-10 flex flex-wrap gap-3">
                 <a
-                  href={PHONE_HREF}
+                  href={SITE.phoneHref}
                   className="inline-flex items-center justify-center bg-brass px-7 py-3.5 text-sm font-semibold tracking-wide text-ink transition-colors hover:bg-brass-deep hover:text-white"
                 >
-                  Call {PHONE}
+                  Call {SITE.phone}
                 </a>
                 <a
                   href="#contact"
@@ -82,7 +65,7 @@ export default function Home() {
           <div className="relative mx-auto grid max-w-7xl gap-14 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
               <p className="font-display text-sm font-semibold tracking-[0.2em] text-lake">
-                SINCE 1989
+                SINCE {SITE.founded}
               </p>
               <h2 className="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight md:text-5xl">
                 Built in Mississauga. Trusted across the GTA.
@@ -90,16 +73,22 @@ export default function Home() {
             </div>
             <div className="md:col-span-7 md:pt-10">
               <p className="text-lg leading-relaxed text-ink/80 md:text-xl">
-                WEST-100 Metro View Realty Ltd. is a Mississauga-based
-                brokerage led by Broker of Record Simon Mahdessian. For more
-                than three decades, our team has guided clients through buying,
-                selling, and leasing — with the market knowledge that only
-                comes from staying close to the communities we serve.
+                {SITE.fullName} is a Mississauga-based brokerage led by Broker
+                of Record {SITE.brokerOfRecord}. For more than three decades,
+                our team has guided clients through buying, selling, and
+                leasing — with the market knowledge that only comes from
+                staying close to the communities we serve.
               </p>
               <p className="mt-6 text-lg leading-relaxed text-ink/80 md:text-xl">
                 From family homes to commercial opportunities, we bring
                 steady, professional representation to every transaction.
               </p>
+              <Link
+                href="/about"
+                className="mt-8 inline-flex text-sm font-semibold tracking-wide text-lake transition-colors hover:text-ink"
+              >
+                More about us →
+              </Link>
             </div>
           </div>
         </section>
@@ -180,10 +169,10 @@ export default function Home() {
                 to talk through your next move.
               </p>
               <a
-                href={PHONE_HREF}
+                href={SITE.phoneHref}
                 className="mt-10 inline-flex items-center justify-center bg-ink px-7 py-3.5 text-sm font-semibold tracking-wide text-paper transition-colors hover:bg-lake"
               >
-                Call {PHONE}
+                Call {SITE.phone}
               </a>
             </div>
 
@@ -193,9 +182,9 @@ export default function Home() {
                   Office
                 </p>
                 <p className="mt-2 text-lg leading-relaxed">
-                  {ADDRESS}
+                  {SITE.address}
                   <br />
-                  {CITY}
+                  {SITE.city}
                 </p>
               </div>
               <div>
@@ -203,46 +192,30 @@ export default function Home() {
                   Phone
                 </p>
                 <a
-                  href={PHONE_HREF}
+                  href={SITE.phoneHref}
                   className="mt-2 block text-lg transition-colors hover:text-lake"
                 >
-                  {PHONE}
+                  {SITE.phone}
                 </a>
               </div>
               <div>
                 <p className="text-xs font-semibold tracking-[0.18em] text-ink/45 uppercase">
                   Fax
                 </p>
-                <p className="mt-2 text-lg">{FAX}</p>
+                <p className="mt-2 text-lg">{SITE.fax}</p>
               </div>
               <div>
                 <p className="text-xs font-semibold tracking-[0.18em] text-ink/45 uppercase">
                   Broker of Record
                 </p>
-                <p className="mt-2 text-lg">Simon Mahdessian</p>
+                <p className="mt-2 text-lg">{SITE.brokerOfRecord}</p>
               </div>
             </div>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-ink/10 bg-ink px-6 py-10 text-mist/70 md:px-10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="font-display text-xl font-semibold tracking-tight text-white">
-              WEST-100
-            </p>
-            <p className="mt-1 text-sm tracking-wide">
-              Metro View Realty Ltd., Brokerage
-            </p>
-          </div>
-          <p className="max-w-md text-sm leading-relaxed">
-            Independently owned and operated. Serving Mississauga and the
-            Greater Toronto Area. Listings available through REALTOR.ca and the
-            Toronto Regional Real Estate Board.
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
