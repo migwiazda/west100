@@ -15,7 +15,7 @@ export default function Home() {
             href="#top"
             className="font-display text-sm font-semibold tracking-[0.18em] text-white"
           >
-            WEST-1000
+            WEST-100
           </a>
           <a
             href={PHONE_HREF}
